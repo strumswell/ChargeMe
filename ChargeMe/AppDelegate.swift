@@ -7,7 +7,7 @@
 //
 
 import Cocoa
-import CoreFoundation;
+import CoreFoundation
 import IOKit.ps
 
 @NSApplicationMain
@@ -16,8 +16,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var statusMenu: NSMenu!
     @IBOutlet weak var charge: NSMenuItem!
     weak var timer: Timer?
-    var lastNotificationAtPercentage = 0;
-    
+    var lastNotificationAtPercentage = 0
     let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
     
     @IBAction func quitClicked(_ sender: NSMenuItem) {
@@ -55,8 +54,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             
             charge.title = "Charge: \(capacity ?? 0)%"
             
-            if (capacity! < 5) {
-                if (lastNotificationAtPercentage != capacity) {
+            if capacity! < 5 {
+                if lastNotificationAtPercentage != capacity {
                     let notification:NSUserNotification = NSUserNotification()
                     notification.title = "ChargeMe"
                     notification.subtitle = "Die Ladung ist im kritischen Bereich!"
@@ -67,10 +66,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     notification.deliveryDate = Date(timeIntervalSinceNow: 1)
                     let notificationcenter:NSUserNotificationCenter = NSUserNotificationCenter.default
                     notificationcenter.scheduleNotification(notification)
-                    lastNotificationAtPercentage = capacity!;
+                    lastNotificationAtPercentage = capacity!
                 }
             }
         }
     }
+    
 }
-
