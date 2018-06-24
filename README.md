@@ -8,4 +8,4 @@ This results in me forgetting about the low battery until my Mac shuts down with
 
 ![notification](https://i.imgur.com/gii15wC.png)
 
-After launching the app, ChargeMe sits in your menu bar indicated by the lighning symbol. In there, you can see your current charge level and you can quit the app.
+After launching the app, ChargeMe sits in your menu bar indicated by the lightning symbol. In there, you can see your current charge level or quit the app.
