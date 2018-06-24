@@ -6,6 +6,6 @@ This results in me forgetting about the low battery until my Mac shuts down with
 
 <b>ChargeMe solves this problem by sending you a notification with every percentage drop after the 5% notification from macOS.</b>
 
-![Imgur](https://i.imgur.com/p7y8MFu.png)
+![Imgur](https://i.imgur.com/tgBoKEK.png)
 
 After launching the app, ChargeMe sits in your menu bar indicated by the lightning symbol. In there, you can see your current charge level or quit the app.
