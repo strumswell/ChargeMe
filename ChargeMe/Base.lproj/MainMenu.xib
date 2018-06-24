@@ -10,20 +10,44 @@
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="ChargeMe" customModuleProvider="target">
             <connections>
+                <outlet property="batteryHealth" destination="jHX-i8-7BO" id="Buu-Ne-SSr"/>
                 <outlet property="charge" destination="dCh-eG-NGw" id="Kim-g5-loZ"/>
                 <outlet property="quitClicked" destination="YVN-7d-vxM" id="Gme-TI-PqA"/>
                 <outlet property="statusMenu" destination="31u-2M-kN1" id="yd3-fx-AC1"/>
+                <outlet property="timeRemaining" destination="EAh-Q6-b8o" id="HKq-Ka-1Ud"/>
             </connections>
         </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <menu id="31u-2M-kN1">
             <items>
-                <menuItem title="Item" enabled="NO" id="dCh-eG-NGw">
+                <menuItem title="ChargeMe" id="0pf-3f-HvR">
+                    <attributedString key="attributedTitle">
+                        <fragment content="ChargeMe">
+                            <attributes>
+                                <font key="NSFont" metaFont="systemSemibold" size="15"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
+                <menuItem isSeparatorItem="YES" id="JcX-wh-id4"/>
+                <menuItem title="Charge Level          ..." enabled="NO" id="dCh-eG-NGw">
+                    <attributedString key="attributedTitle"/>
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="Time Remaining     ..." enabled="NO" id="EAh-Q6-b8o">
+                    <attributedString key="attributedTitle"/>
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="Health                     ..." enabled="NO" id="jHX-i8-7BO">
+                    <attributedString key="attributedTitle"/>
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="i4Y-lo-NH4"/>
                 <menuItem title="Quit" id="YVN-7d-vxM">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
@@ -31,7 +55,7 @@
                     </connections>
                 </menuItem>
             </items>
-            <point key="canvasLocation" x="-35" y="40"/>
+            <point key="canvasLocation" x="19" y="54"/>
         </menu>
     </objects>
 </document>

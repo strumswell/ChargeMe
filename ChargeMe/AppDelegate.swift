@@ -15,6 +15,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBOutlet weak var statusMenu: NSMenu!
     @IBOutlet weak var charge: NSMenuItem!
+    @IBOutlet weak var timeRemaining: NSMenuItem!
+    @IBOutlet weak var batteryHealth: NSMenuItem!
     weak var timer: Timer?
     var lastNotificationAtPercentage = 0
     let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
@@ -31,7 +33,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         icon?.isTemplate = true
         statusItem.image = icon
         statusItem.menu = statusMenu
-        charge.title = "Charge: loading..."
         
         timer = Timer.scheduledTimer(
             timeInterval: 10.0,
@@ -51,15 +52,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         for ps in sources {
             let info = IOPSGetPowerSourceDescription(snapshot, ps).takeUnretainedValue() as! [String: AnyObject]
             let capacity = info[kIOPSCurrentCapacityKey] as? Int
+            let time = round(100 * (info[kIOPSTimeToEmptyKey] as? Double)!/60) / 100
+            let health = info[kIOPSBatteryHealthKey] as? String
             
-            charge.title = "Charge: \(capacity ?? 0)%"
+            charge.title = "Charge Level          \(capacity ?? 0)%"
+            timeRemaining.title = "Time Remaining     \(time)h"
+            batteryHealth.title = "Health                     \(health ?? "unkown")"
             
             if capacity! < 5 {
                 if lastNotificationAtPercentage != capacity {
                     let notification:NSUserNotification = NSUserNotification()
                     notification.title = "ChargeMe"
-                    notification.subtitle = "Die Ladung ist im kritischen Bereich!"
-                    notification.informativeText = "Restliche Ladung: \(capacity ?? 0)%"
+                    notification.subtitle = "Your battery is running low!"
+                    notification.informativeText = "Remaining: \(capacity ?? 0)%"
                     
                     notification.soundName = NSUserNotificationDefaultSoundName
                     
