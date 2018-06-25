@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E2C333720E1714E00E48C00 /* BatteryAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2C333620E1714E00E48C00 /* BatteryAPI.swift */; };
 		3E9B8AD220DEF06F005D04C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9B8AD120DEF06F005D04C4 /* AppDelegate.swift */; };
 		3E9B8AD420DEF070005D04C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E9B8AD320DEF070005D04C4 /* Assets.xcassets */; };
 		3E9B8AD720DEF070005D04C4 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E9B8AD520DEF070005D04C4 /* MainMenu.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3E2C333620E1714E00E48C00 /* BatteryAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryAPI.swift; sourceTree = "<group>"; };
 		3E9B8ACE20DEF06F005D04C4 /* ChargeMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChargeMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E9B8AD120DEF06F005D04C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3E9B8AD320DEF070005D04C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -52,6 +54,7 @@
 			isa = PBXGroup;
 			children = (
 				3E9B8AD120DEF06F005D04C4 /* AppDelegate.swift */,
+				3E2C333620E1714E00E48C00 /* BatteryAPI.swift */,
 				3E9B8AD320DEF070005D04C4 /* Assets.xcassets */,
 				3E9B8AD520DEF070005D04C4 /* MainMenu.xib */,
 				3E9B8AD820DEF070005D04C4 /* Info.plist */,
@@ -130,6 +133,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E2C333720E1714E00E48C00 /* BatteryAPI.swift in Sources */,
 				3E9B8AD220DEF06F005D04C4 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
