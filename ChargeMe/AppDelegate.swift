@@ -51,16 +51,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         for ps in sources {
             let info = IOPSGetPowerSourceDescription(snapshot, ps).takeUnretainedValue() as! [String: AnyObject]
+            let isCharging = info[kIOPSIsChargingKey] as? BooleanLiteralType
             let capacity = info[kIOPSCurrentCapacityKey] as? Int
             let time = round(100 * (info[kIOPSTimeToEmptyKey] as? Double)!/60) / 100
             let health = info[kIOPSBatteryHealthKey] as? String
             
             charge.title = "Charge Level          \(capacity ?? 0)%"
-            timeRemaining.title = "Time Remaining     \(time)h"
             batteryHealth.title = "Health                     \(health ?? "unkown")"
+
+            if isCharging! {
+                timeRemaining.title = "Time Remaining     Charging..."
+            } else if time < 0 {
+                timeRemaining.title = "Time Remaining     Calculating..."
+            } else {
+                timeRemaining.title = "Time Remaining     \(time)h"
+            }
             
             if capacity! < 5 {
-                if lastNotificationAtPercentage != capacity {
+                if lastNotificationAtPercentage != capacity && !isCharging! {
                     let notification:NSUserNotification = NSUserNotification()
                     notification.title = "ChargeMe"
                     notification.subtitle = "Your battery is running low!"
