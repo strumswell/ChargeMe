@@ -1,5 +1,6 @@
 # ChargeMe - A macOS charging reminder [![Codacy Badge](https://api.codacy.com/project/badge/Grade/c72ad18c8abc4cd88fe1146f6d51d15d)](https://www.codacy.com/app/strumswell/ChargeMe?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=strumswell/ChargeMe&amp;utm_campaign=Badge_Grade)
 
+### Download: [\*click*](https://github.com/strumswell/ChargeMe/releases/download/beta/ChargeMe.app.zip)
 This is my first Swift project which is the result of a problem I constantly have - my Mac shutting down because of low battery.<br> 
 You normally get a notification when your Mac hits 5% but if you're like me, you just ignore it because you can still use your Mac for some time with 5%.
 This results in me forgetting about the low battery until my Mac shuts down without any warning!
