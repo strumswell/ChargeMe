@@ -11,6 +11,7 @@
 		3E9B8AD220DEF06F005D04C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9B8AD120DEF06F005D04C4 /* AppDelegate.swift */; };
 		3E9B8AD420DEF070005D04C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E9B8AD320DEF070005D04C4 /* Assets.xcassets */; };
 		3E9B8AD720DEF070005D04C4 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E9B8AD520DEF070005D04C4 /* MainMenu.xib */; };
+		3EE969D520E42FFB00346DEE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3EE969D720E42FFB00346DEE /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,10 @@
 		3E9B8AD620DEF070005D04C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		3E9B8AD820DEF070005D04C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3E9B8AD920DEF070005D04C4 /* ChargeMe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ChargeMe.entitlements; sourceTree = "<group>"; };
+		3EE969D120E42E6D00346DEE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MainMenu.strings; sourceTree = "<group>"; };
+		3EE969D220E42ED900346DEE /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MainMenu.strings; sourceTree = "<group>"; };
+		3EE969D620E42FFB00346DEE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3EE969D820E4300C00346DEE /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +64,7 @@
 				3E9B8AD520DEF070005D04C4 /* MainMenu.xib */,
 				3E9B8AD820DEF070005D04C4 /* Info.plist */,
 				3E9B8AD920DEF070005D04C4 /* ChargeMe.entitlements */,
+				3EE969D720E42FFB00346DEE /* Localizable.strings */,
 			);
 			path = ChargeMe;
 			sourceTree = "<group>";
@@ -105,6 +111,7 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
 			);
 			mainGroup = 3E9B8AC520DEF06F005D04C4;
 			productRefGroup = 3E9B8ACF20DEF06F005D04C4 /* Products */;
@@ -122,6 +129,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E9B8AD420DEF070005D04C4 /* Assets.xcassets in Resources */,
+				3EE969D520E42FFB00346DEE /* Localizable.strings in Resources */,
 				3E9B8AD720DEF070005D04C4 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -145,8 +153,19 @@
 			isa = PBXVariantGroup;
 			children = (
 				3E9B8AD620DEF070005D04C4 /* Base */,
+				3EE969D120E42E6D00346DEE /* en */,
+				3EE969D220E42ED900346DEE /* de */,
 			);
 			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		3EE969D720E42FFB00346DEE /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3EE969D620E42FFB00346DEE /* en */,
+				3EE969D820E4300C00346DEE /* de */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -156,6 +175,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -216,6 +236,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

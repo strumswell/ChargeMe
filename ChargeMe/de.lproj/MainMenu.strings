@@ -1,0 +1,15 @@
+
+/* Class = "NSMenuItem"; title = "ChargeMe"; ObjectID = "0pf-3f-HvR"; */
+"0pf-3f-HvR.title" = "ChargeMe";
+
+/* Class = "NSMenuItem"; title = "Time Remaining     ..."; ObjectID = "EAh-Q6-b8o"; */
+"EAh-Q6-b8o.title" = "Verbleibend        ...";
+
+/* Class = "NSMenuItem"; title = "Quit"; ObjectID = "YVN-7d-vxM"; */
+"YVN-7d-vxM.title" = "Beenden";
+
+/* Class = "NSMenuItem"; title = "Charge Level          ..."; ObjectID = "dCh-eG-NGw"; */
+"dCh-eG-NGw.title" = "Ladung                ...";
+
+/* Class = "NSMenuItem"; title = "Health                     ..."; ObjectID = "jHX-i8-7BO"; */
+"jHX-i8-7BO.title" = "Gesundheit         ...";

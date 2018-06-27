@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  ChargeMe
+
+  Created by Philipp Bolte on 27.06.18.
+  Copyright © 2018 Philipp Bolte. All rights reserved.
+*/
+"Your battery is running low!" = "Your battery is running low!";
+"Remaining" = "Remaining: ";
+"Charge Level" = "Charge Level          ";
+"Health" = "Health                     ";
+"Time Remaining" = "Time Remaining     ";
+"Charging..." = "Charging...";
+"Calculating..." = "Calculating...";

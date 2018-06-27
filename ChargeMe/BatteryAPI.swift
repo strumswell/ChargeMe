@@ -23,29 +23,30 @@ class BatteryAPI: NSObject {
         return desc
     }
     
-    func getBatteryLevel() -> Int{
+    func getBatteryLevel() -> Int {
         return (getPowerSourceInfo()[kIOPSCurrentCapacityKey] as? Int)!
     }
     
-    func getBatteryHealth() -> String{
+    func getBatteryHealth() -> String {
         return (getPowerSourceInfo()[kIOPSBatteryHealthKey] as? String)!
     }
     
-    func getRemainingTime() -> Double{
+    func getRemainingTime() -> Double {
         return round(100 * (getPowerSourceInfo()[kIOPSTimeToEmptyKey] as? Double)!/60) / 100
     }
     
-    func getRemainingTimeText() -> String{
+    func getRemainingTimeText() -> String {
         if isCharging() {
-            return "Charging..."
+            return NSLocalizedString("Charging...", comment: "Indicating that battery is charging")
         } else if getRemainingTime() < 0 {
-           return "Calculating..."
+           return NSLocalizedString("Calculating...", comment: "Indicating battery usage calculation")
         } else {
-            return String(getRemainingTime())
+            return String(getRemainingTime())+"h"
         }
     }
     
-    func isCharging() -> BooleanLiteralType{
+    func isCharging() -> BooleanLiteralType {
         return (getPowerSourceInfo()[kIOPSIsChargingKey] as? BooleanLiteralType)!
     }
+    
 }

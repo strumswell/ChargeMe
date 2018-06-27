@@ -43,24 +43,30 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationWillTerminate(_ aNotification: Notification) {}
     
     @objc func startTimer(timer: Timer) {
-        charge.title = "Charge Level          \(battery.getBatteryLevel())%"
-        batteryHealth.title = "Health                     \(battery.getBatteryHealth())"
-        timeRemaining.title = "Time Remaining     \(battery.getRemainingTimeText())h"
+        charge.title = "\(NSLocalizedString("Charge Level", comment: ""))" + "\(battery.getBatteryLevel())%"
+        batteryHealth.title = "\(NSLocalizedString("Health", comment: ""))" + "\(battery.getBatteryHealth())"
+        timeRemaining.title = "\(NSLocalizedString("Time Remaining", comment: ""))" + "\(battery.getRemainingTimeText())"
         
         if battery.getBatteryLevel() < 5 {
             if lastNotificationAtPercentage != battery.getBatteryLevel() && !battery.isCharging() {
-                let notification:NSUserNotification = NSUserNotification()
-                let notificationcenter:NSUserNotificationCenter = NSUserNotificationCenter.default
-
-                notification.title = "ChargeMe"
-                notification.subtitle = "Your battery is running low!"
-                notification.informativeText = "Remaining: \(battery.getBatteryLevel())%"
-                notification.soundName = NSUserNotificationDefaultSoundName
-                notification.deliveryDate = Date(timeIntervalSinceNow: 1)
-                notificationcenter.scheduleNotification(notification)
+                sendNotification(title: "ChargeMe",
+                                 subtitle: NSLocalizedString("Your battery is running low!", comment: "Information that battery is almost empty"),
+                                 text: "\(NSLocalizedString("Remaining", comment: "Remaing battery charge"))" + "\(battery.getBatteryLevel())%")
                 lastNotificationAtPercentage = battery.getBatteryLevel()
             }
         }
+    }
+    
+    func sendNotification(title: String, subtitle: String, text: String) {
+        let notification:NSUserNotification = NSUserNotification()
+        let notificationcenter:NSUserNotificationCenter = NSUserNotificationCenter.default
+        
+        notification.title = title
+        notification.subtitle = subtitle
+        notification.informativeText = text
+        notification.soundName = NSUserNotificationDefaultSoundName
+        notification.deliveryDate = Date(timeIntervalSinceNow: 1)
+        notificationcenter.scheduleNotification(notification)
     }
     
 }
