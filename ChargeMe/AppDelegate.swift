@@ -37,7 +37,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             selector: #selector(startTimer(timer:)),
             userInfo: nil,
             repeats: true
-        )        
+        )
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {}

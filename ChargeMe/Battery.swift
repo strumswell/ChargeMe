@@ -36,7 +36,7 @@ class Battery: NSObject {
     }
     
     func getRemainingTimeText() -> String {
-        if isCharging() {
+        if isCharging() || isFull() {
             return NSLocalizedString("Charging...", comment: "Indicating that battery is charging")
         } else if getRemainingTime() < 0 {
            return NSLocalizedString("Calculating...", comment: "Indicating battery usage calculation")
@@ -46,11 +46,11 @@ class Battery: NSObject {
     }
     
     func isCharging() -> BooleanLiteralType {
-        if (getPowerSourceInfo()[kIOPSIsChargingKey] as? BooleanLiteralType)! && (getPowerSourceInfo()[kIOPSTimeToFullChargeKey] as? Int) != 0 {
-            return true
-        } else {
-            return false
-        }
+        return (getPowerSourceInfo()[kIOPSIsChargingKey] as? BooleanLiteralType)!
+    }
+    
+    func isFull() -> BooleanLiteralType {
+        return (getPowerSourceInfo()[kIOPSIsChargedKey] as? BooleanLiteralType)!
     }
     
 }
