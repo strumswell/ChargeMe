@@ -10,7 +10,7 @@ import Cocoa
 import CoreFoundation
 import IOKit.ps
 
-class BatteryAPI: NSObject {
+class Battery: NSObject {
     
     func getPowerSourceInfo() -> [String: AnyObject] {
         let snapshot = IOPSCopyPowerSourcesInfo().takeRetainedValue()
@@ -46,7 +46,11 @@ class BatteryAPI: NSObject {
     }
     
     func isCharging() -> BooleanLiteralType {
-        return (getPowerSourceInfo()[kIOPSIsChargingKey] as? BooleanLiteralType)!
+        if (getPowerSourceInfo()[kIOPSIsChargingKey] as? BooleanLiteralType)! && (getPowerSourceInfo()[kIOPSTimeToFullChargeKey] as? Int) != 0 {
+            return true
+        } else {
+            return false
+        }
     }
     
 }

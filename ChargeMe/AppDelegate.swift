@@ -16,7 +16,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var timeRemaining: NSMenuItem!
     @IBOutlet weak var batteryHealth: NSMenuItem!
     weak var timer: Timer?
-    let battery = BatteryAPI()
+    let battery = Battery()
     let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
     var lastNotificationAtPercentage = 0
     
@@ -37,7 +37,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             selector: #selector(startTimer(timer:)),
             userInfo: nil,
             repeats: true
-        )
+        )        
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {}
