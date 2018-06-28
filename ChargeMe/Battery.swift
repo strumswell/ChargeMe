@@ -50,7 +50,11 @@ class Battery: NSObject {
     }
     
     func isFull() -> BooleanLiteralType {
-        return (getPowerSourceInfo()[kIOPSIsChargedKey] as? BooleanLiteralType)!
+        if (getPowerSourceInfo()[kIOPSIsChargedKey] as? BooleanLiteralType) != nil {
+            return (getPowerSourceInfo()[kIOPSIsChargedKey] as? BooleanLiteralType)!
+        } else {
+            return false
+        }
     }
     
 }
