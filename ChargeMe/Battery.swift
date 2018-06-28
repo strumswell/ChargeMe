@@ -27,8 +27,14 @@ class Battery: NSObject {
         return (getPowerSourceInfo()[kIOPSCurrentCapacityKey] as? Int)!
     }
     
+    //Someone out there knowing possible health values beside 'Good'? -> Github issue
     func getBatteryHealth() -> String {
-        return (getPowerSourceInfo()[kIOPSBatteryHealthKey] as? String)!
+        let health = getPowerSourceInfo()[kIOPSBatteryHealthKey] as? String
+        if health == "Good" {
+            return NSLocalizedString("Good", comment: "Good battery health")
+        } else {
+            return health!
+        }
     }
     
     func getRemainingTime() -> Double {
