@@ -21,16 +21,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var lastNotificationAtPercentage = 0
     
     @IBAction func quitClicked(_ sender: NSMenuItem) {
+        //Quit timer and application
         timer!.invalidate()
         NSApplication.shared.terminate(self)
     }
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        //Prepare menu bar
         let icon = NSImage(named: NSImage.Name(rawValue: "statusIcon"))
         icon?.isTemplate = true
         statusItem.image = icon
         statusItem.menu = statusMenu
         
+        //Start timer
         timer = Timer.scheduledTimer(
             timeInterval: 10.0,
             target: self,
@@ -42,11 +45,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationWillTerminate(_ aNotification: Notification) {}
     
+    /**
+     * Start timer that updates values in menu bar
+     *
+     * - Parameter timer: Timer object
+     */
     @objc func startTimer(timer: Timer) {
+        //Update information in menu bar
         charge.title = "\(NSLocalizedString("Charge Level", comment: ""))" + "\(battery.getBatteryLevel())%"
         batteryHealth.title = "\(NSLocalizedString("Health", comment: ""))" + "\(battery.getBatteryHealth())"
-        timeRemaining.title = "\(NSLocalizedString("Time Remaining", comment: ""))" + "\(battery.getRemainingTimeText())"
+        timeRemaining.title = "\(NSLocalizedString("Time Remaining", comment: ""))" + "\(battery.getRemainingFormatted())"
         
+        //Send notifcation under 5% every percent drop
         if battery.getBatteryLevel() < 5 {
             if lastNotificationAtPercentage != battery.getBatteryLevel() && !battery.isCharging() {
                 sendNotification(title: "ChargeMe",
@@ -57,6 +67,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
+    /**
+     * Send a notification with title, subtitle and text
+     *
+     * - Parameter title: Title of notification
+     * - Parameter subtitle: Subtitle of notification
+     * - Parameter text: Actual text of notification
+     */
     func sendNotification(title: String, subtitle: String, text: String) {
         let notification:NSUserNotification = NSUserNotification()
         let notificationcenter:NSUserNotificationCenter = NSUserNotificationCenter.default

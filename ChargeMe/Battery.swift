@@ -11,7 +11,11 @@ import CoreFoundation
 import IOKit.ps
 
 class Battery: NSObject {
-    
+    /**
+     * Get information about power source
+     *
+     * - Returns: String array containing all information about power source
+     */
     func getPowerSourceInfo() -> [String: AnyObject] {
         let snapshot = IOPSCopyPowerSourcesInfo().takeRetainedValue()
         let sources = IOPSCopyPowerSourcesList(snapshot).takeRetainedValue() as Array
@@ -23,11 +27,20 @@ class Battery: NSObject {
         return desc
     }
     
+    /**
+     * Get battery percentage level
+     *
+     * - Returns: Battery level
+     */
     func getBatteryLevel() -> Int {
         return (getPowerSourceInfo()[kIOPSCurrentCapacityKey] as? Int)!
     }
     
-    //Someone out there knowing possible health values beside 'Good'? -> Github issue
+    /**
+     * Get information about battery health
+     *
+     * - Returns: Battery health
+     */
     func getBatteryHealth() -> String {
         let health = getPowerSourceInfo()[kIOPSBatteryHealthKey] as? String
         if health == "Good" {
@@ -37,24 +50,57 @@ class Battery: NSObject {
         }
     }
     
-    func getRemainingTime() -> Double {
-        return round(100 * (getPowerSourceInfo()[kIOPSTimeToEmptyKey] as? Double)!/60) / 100
+    /**
+     * Get information about remaining time on charge
+     *
+     * - Returns: Remaining time in minutes
+     */
+    func getRemainingTime() -> Int {
+        return (getPowerSourceInfo()[kIOPSTimeToEmptyKey] as? Int)!
     }
     
-    func getRemainingTimeText() -> String {
+    /**
+     * Get string for remaining time text in menu bar.
+     * Changes based on if system is charging or
+     * calculating usage.
+     *
+     * - Returns: Remaining time text for menu bar
+     */
+    func getRemainingFormatted() -> String {
         if isCharging() || isFull() {
             return NSLocalizedString("Charging...", comment: "Indicating that battery is charging")
         } else if getRemainingTime() < 0 {
            return NSLocalizedString("Calculating...", comment: "Indicating battery usage calculation")
         } else {
-            return String(getRemainingTime())+"h"
+            let time = getTimeInHoursAndMinutes();
+            return String(time.hours) + ":" + String(time.minutes)
         }
     }
     
+    /**
+     * Get remaining time in hours and minutes to the hour
+     *
+     * - Returns: A tupel with remaining time
+     *            in hours and minutes
+     */
+    func getTimeInHoursAndMinutes() -> (hours : Int , minutes : Int) {
+        return (getRemainingTime() / 60, (getRemainingTime() % 60))
+    }
+    
+    /**
+     * Check if battery is charging
+     *
+     * - Returns: boolean
+     */
     func isCharging() -> BooleanLiteralType {
         return (getPowerSourceInfo()[kIOPSIsChargingKey] as? BooleanLiteralType)!
     }
     
+    /**
+     * Check if battery is full nor not
+     *
+     * - Returns: boolean
+     */
     func isFull() -> BooleanLiteralType {
         if (getPowerSourceInfo()[kIOPSIsChargedKey] as? BooleanLiteralType) != nil {
             return (getPowerSourceInfo()[kIOPSIsChargedKey] as? BooleanLiteralType)!
