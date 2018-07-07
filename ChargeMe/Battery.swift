@@ -83,8 +83,14 @@ class Battery: NSObject {
      * - Returns: A tupel with remaining time
      *            in hours and minutes
      */
-    func getTimeInHoursAndMinutes() -> (hours : Int , minutes : Int) {
-        return (getRemainingTime() / 60, (getRemainingTime() % 60))
+    func getTimeInHoursAndMinutes() -> (hours : String , minutes : String) {
+        let hours = String(getRemainingTime() / 60)
+        var minutes = String(getRemainingTime() % 60)
+        
+        if (getRemainingTime() % 60) < 10 {
+            minutes = "0" + minutes
+        }
+        return (hours, minutes)
     }
     
     /**
