@@ -1,9 +1,11 @@
 //
-//  batteryAPI.swift
+//  Battery.swift
 //  ChargeMe
 //
 //  Created by Philipp Bolte on 25.06.18.
-//  Copyright © 2018 Philipp Bolte. All rights reserved.
+//  Licensed under the MIT License
+//  Permissions: commercial use, private use, distribution, modification
+//  Limitations: liability, warranty 
 //
 
 import Cocoa
@@ -11,6 +13,7 @@ import CoreFoundation
 import IOKit.ps
 
 class Battery: NSObject {
+    
     /**
      * Get information about power source
      *
@@ -45,6 +48,8 @@ class Battery: NSObject {
         let health = getPowerSourceInfo()[kIOPSBatteryHealthKey] as? String
         if health == "Good" {
             return NSLocalizedString("Good", comment: "Good battery health")
+        } else if health == "Check Battery" {
+            return NSLocalizedString("Check Battery", comment: "Battery should be checked by Apple")
         } else {
             return health!
         }
@@ -67,8 +72,10 @@ class Battery: NSObject {
      * - Returns: Remaining time text for menu bar
      */
     func getRemainingFormatted() -> String {
-        if isCharging() || isFull() {
+        if isCharging() {
             return NSLocalizedString("Charging...", comment: "Indicating that battery is charging")
+        } else if isFull() {
+            return NSLocalizedString("Full", comment: "Indicating that battery is fully charged")
         } else if getRemainingTime() < 0 {
            return NSLocalizedString("Calculating...", comment: "Indicating battery usage calculation")
         } else {

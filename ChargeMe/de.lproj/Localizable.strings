@@ -7,9 +7,11 @@
 */
 "Your battery is running low!" = "Deine Batterie ist fast leer!";
 "Remaining" = "Verbleibend: ";
-"Charge Level" = "Ladung                   ";
-"Health" = "Gesundheit            ";
-"Time Remaining" = "Verbleibend           ";
+"Charge Level" = "Batterie               ";
+"Health" = "Gesundheit         ";
+"Time Remaining" = "Verbleibend        ";
 "Charging..." = "Lädt...";
 "Calculating..." = "Berechne...";
 "Good" = "Gut";
+"Check Battery" = "Batterie warten";
+"Full" = "Geladen";

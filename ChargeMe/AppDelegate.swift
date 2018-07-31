@@ -3,8 +3,9 @@
 //  ChargeMe
 //
 //  Created by Philipp Bolte on 23.06.18.
-//  Copyright © 2018 Philipp Bolte. All rights reserved.
-//
+//  Licensed under the MIT License
+//  Permissions: commercial use, private use, distribution, modification
+//  Limitations: liability, warranty //
 
 import Cocoa
 
@@ -21,19 +22,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var lastNotificationAtPercentage = 0
     
     @IBAction func quitClicked(_ sender: NSMenuItem) {
-        //Quit timer and application
+        // Quit timer and application
         timer!.invalidate()
         NSApplication.shared.terminate(self)
     }
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        //Prepare menu bar
+        // Prepare menu bar
         let icon = NSImage(named: NSImage.Name(rawValue: "statusIcon"))
         icon?.isTemplate = true
         statusItem.image = icon
         statusItem.menu = statusMenu
         
-        //Start timer
+        // Fill menu bar with current battery information
+        setBatteryInformation()
+        
+        // Start timer
         timer = Timer.scheduledTimer(
             timeInterval: 10.0,
             target: self,
@@ -51,14 +55,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
      * - Parameter timer: Timer object
      */
     @objc func startTimer(timer: Timer) {
-        //Update information in menu bar
-        charge.title = "\(NSLocalizedString("Charge Level", comment: ""))" + "\(battery.getBatteryLevel())%"
-        batteryHealth.title = "\(NSLocalizedString("Health", comment: ""))" + "\(battery.getBatteryHealth())"
-        timeRemaining.title = "\(NSLocalizedString("Time Remaining", comment: ""))" + "\(battery.getRemainingFormatted())"
+        // Update information in menu bar
+        setBatteryInformation()
         
-        //Send notifcation under 5% every percent drop
+        // Send notifcation under 5% every percent drop
         if battery.getBatteryLevel() < 5 {
-            if lastNotificationAtPercentage != battery.getBatteryLevel() && !battery.isCharging() {
+            if (lastNotificationAtPercentage != battery.getBatteryLevel()) && !battery.isCharging() {
                 sendNotification(title: "ChargeMe",
                                  subtitle: NSLocalizedString("Your battery is running low!", comment: "Information that battery is almost empty"),
                                  text: "\(NSLocalizedString("Remaining", comment: "Remaing battery charge"))" + "\(battery.getBatteryLevel())%")
@@ -84,6 +86,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         notification.soundName = NSUserNotificationDefaultSoundName
         notification.deliveryDate = Date(timeIntervalSinceNow: 1)
         notificationcenter.scheduleNotification(notification)
+    }
+    
+    /**
+     * Set battery information in the menu bar
+     *
+     */
+    func setBatteryInformation() {
+        charge.title = "\(NSLocalizedString("Charge Level", comment: "Current battery percentage"))" + "\(battery.getBatteryLevel())%"
+        batteryHealth.title = "\(NSLocalizedString("Health", comment: "Health of the battery"))" + "\(battery.getBatteryHealth())"
+        timeRemaining.title = "\(NSLocalizedString("Time Remaining", comment: "Time left on current charge"))" + "\(battery.getRemainingFormatted())"
     }
     
 }
