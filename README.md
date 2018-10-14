@@ -5,7 +5,6 @@ This is my first Swift project which is the result of a problem I constantly hav
 
 ChargeMe solves this problem by sending you a notification with every percentage drop after the low battery warning from macOS to remind you of charging.
 <p align="center">
-  <img src="https://i.imgur.com/tgBoKEK.png">
-  <img src="https://i.imgur.com/F766FLd.png">
+  <img src="https://i.imgur.com/NSWHvg5.png">
 </p>
 After launching the app, ChargeMe sits in your menu bar indicated by the lightning symbol. In there, you can see your current charge level or quit the app.
