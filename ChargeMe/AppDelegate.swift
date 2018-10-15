@@ -5,7 +5,7 @@
 //  Created by Philipp Bolte on 23.06.18.
 //  Licensed under the MIT License
 //  Permissions: commercial use, private use, distribution, modification
-//  Limitations: liability, warranty //
+//  Limitations: liability, warranty
 
 import Cocoa
 
@@ -29,7 +29,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Prepare menu bar
-        let icon = NSImage(named: NSImage.Name(rawValue: "statusIcon"))
+        let icon = NSImage(named: "statusIcon")
         icon?.isTemplate = true
         statusItem.image = icon
         statusItem.menu = statusMenu
@@ -60,10 +60,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         // Send notifcation under 5% every percent drop
         if battery.getBatteryLevel() < 5 {
-            if (lastNotificationAtPercentage != battery.getBatteryLevel()) && !battery.isCharging() {
+            if ((lastNotificationAtPercentage != battery.getBatteryLevel()) && !battery.isCharging()) {
                 sendNotification(title: "ChargeMe",
                                  subtitle: NSLocalizedString("Your battery is running low!", comment: "Information that battery is almost empty"),
-                                 text: "\(NSLocalizedString("Remaining", comment: "Remaing battery charge"))" + "\(battery.getBatteryLevel())%")
+                                 text: "\(NSLocalizedString("Remaining", comment: "Remaining battery charge"))" + "\(battery.getBatteryLevel())%")
                 lastNotificationAtPercentage = battery.getBatteryLevel()
             }
         }

@@ -5,15 +5,13 @@
 //  Created by Philipp Bolte on 25.06.18.
 //  Licensed under the MIT License
 //  Permissions: commercial use, private use, distribution, modification
-//  Limitations: liability, warranty 
-//
+//  Limitations: liability, warranty
 
 import Cocoa
 import CoreFoundation
 import IOKit.ps
 
 class Battery: NSObject {
-    
     /**
      * Get information about power source
      *
@@ -79,7 +77,7 @@ class Battery: NSObject {
         } else if getRemainingTime() < 0 {
            return NSLocalizedString("Calculating...", comment: "Indicating battery usage calculation")
         } else {
-            let time = getTimeInHoursAndMinutes();
+            let time = getTimeInHoursAndMinutes()
             return String(time.hours) + ":" + String(time.minutes)
         }
     }
@@ -106,7 +104,15 @@ class Battery: NSObject {
      * - Returns: boolean
      */
     func isCharging() -> BooleanLiteralType {
-        return (getPowerSourceInfo()[kIOPSIsChargingKey] as? BooleanLiteralType)!
+        // Not using kIOPSIsChargingKey because it takes about 10 seconds until it's actually charging
+        // -> lagging indicator
+        // return (getPowerSourceInfo()[kIOPSIsChargingKey] as? BooleanLiteralType)!
+        let powerSource = getPowerSourceInfo()[kIOPSPowerSourceStateKey] as? String;
+        if (powerSource == "AC Power") {
+            return true;
+        } else {
+            return false;
+        }
     }
     
     /**
